@@ -1,10 +1,16 @@
 import React from 'react';
+import { Text, cardProps } from '../../styled';
+import { useMediaQuery } from '../../../hooks';
+import { BiographyContainer } from './biographyStyledComponents';
 
 function Biography() {
+    const { isDesktop } = useMediaQuery();
+    const biographyContainerPadding = isDesktop ? [5, 8] : [2];
+
     return (
-        <div className="biography">
-            <p>Biography</p>
-        </div>
+        <BiographyContainer $variant={cardProps.variant.background} $p={biographyContainerPadding}>
+            <Text>Biography</Text>
+        </BiographyContainer>
     );
 };
 

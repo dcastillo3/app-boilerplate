@@ -1,11 +1,13 @@
+import { Icon } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { MenuItemContainer } from './menuStyledComponents';
+import { Box, FlexBoxColumn } from '../styled';
 
 function MenuItem({name, path, icon, callback}) {
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const isActive = pathname === path;
-    const menuItemContainerClassName = isActive ? 'menu-item-container-active' : 'menu-item-container';
 
     const handleMenuItemClick = path => {
         navigate(path);
@@ -14,15 +16,15 @@ function MenuItem({name, path, icon, callback}) {
     };
 
     return (
-        <button className={menuItemContainerClassName} onClick={() => handleMenuItemClick(path)}>
-            <span className="material-icons menu-item-icon">
-                {icon}
-            </span>
+        <MenuItemContainer active={isActive} onClick={() => handleMenuItemClick(path)}>
+            <FlexBoxColumn $p={[2, 4]} $center>
+                <Icon component={icon} />
 
-            <div className="menu-item-text">
-                {name}
-            </div>
-        </button>
+                <Box>
+                    {name}
+                </Box>
+            </FlexBoxColumn>
+        </MenuItemContainer>
     );
 };
 

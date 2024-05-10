@@ -1,10 +1,16 @@
 import React from 'react';
+import { Text, cardProps } from '../../styled';
+import { useMediaQuery } from '../../../hooks';
+import { NotFoundContainer } from './notFoundStyledComponents';
 
 function NotFound() {
+    const { isDesktop } = useMediaQuery();
+    const notFoundContainerPadding = isDesktop ? [5, 8] : [2];
+
     return (
-        <div className="not-found">
-            404 not found
-        </div>
+        <NotFoundContainer $variant={cardProps.variant.background} $p={notFoundContainerPadding}>
+            <Text>404 Not Found</Text>
+        </NotFoundContainer>
     );
 };
 
