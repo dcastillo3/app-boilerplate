@@ -1,5 +1,5 @@
 {
-  "name": "apartment-score",
+  "name": "app-boilerplate",
   "version": "1.0.0",
   "description": "App Boilerplate",
   "main": "index.js",
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dcastillo3/apartment-score.git"
+    "url": "git+https://github.com/dcastillo3/app-boilerplate.git"
   },
   "author": "dcastillo3",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dcastillo3/apartment-score/issues"
+    "url": "https://github.com/dcastillo3/app-boilerplate/issues"
   },
-  "homepage": "https://github.com/dcastillo3/apartment-score#readme",
+  "homepage": "https://github.com/dcastillo3/app-boilerplate#readme",
   "proxy": "http://localhost:8000",
   "dependencies": {
     "@emotion/react": "^11.11.4",
