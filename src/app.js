@@ -1,34 +1,53 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MainRoutes } from './routes';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { DataContext } from './context';
-import "@fontsource/crimson-text";
-import "@fontsource/abel";
-import "@fontsource/playfair-display-sc";
-import "@fontsource/cormorant-garamond";
-import "@fontsource/abel";
-import 'material-icons/iconfont/material-icons.css';
-import './theme/theme.css';
+import { Box } from './components/styled';
 
 function App() {
     const { fetchData } = useContext(DataContext);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchData();
+        const fetchAppData = async () => {
+            setLoading(true);
+
+            // Fetch independent apis
+            const independentApis = await Promise.all([
+                fetchData()
+            ]);
+            
+            // Fetch dependent apis
+            // await Promise.all([
+            // ]);
+
+            setLoading(false);
+        };
+
+        fetchAppData();
     }, []);
 
-    return (
-        <div className="app">
-            <div className="inner-wrapper">
-                <Header />
-                
-                <div className="main-wrapper">
-                    <MainRoutes />
-                </div>
-            </div>
+    const appRender = (
+        <Box>
+            <Header />
+            <MainRoutes />
             <Footer />
-        </div>
+        </Box>
+    )
+
+    const loadingRender = (
+        <Box>
+            Loading...
+        </Box>
+    );
+
+    const renderApp = loading ? loadingRender : appRender;
+
+    return (
+        <Box>
+            {renderApp}
+        </Box>
     );
 };
 
