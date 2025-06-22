@@ -1,7 +1,15 @@
 import styled from "styled-components";
-import { Card } from "../styled";
+import { Card, Box, FlexBox, FlexBoxColumn } from "../styled";
 
-const HeaderContainer = styled(Card)`
+const HeaderContainer = styled(Box)`
+`;
+
+const HeaderFlexBoxContainer = styled(FlexBox)`
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const HeaderLogoMenuContainer = styled(Card)`
     position: sticky;
     top: 0;
     left: 0;
@@ -9,6 +17,13 @@ const HeaderContainer = styled(Card)`
     z-index: ${({theme}) => theme.zIndex.appBar};
 `;
 
+const HeaderTitleContainer = styled(FlexBoxColumn)`
+    text-align: center;
+`;
+
 export {
-    HeaderContainer
+    HeaderContainer,
+    HeaderFlexBoxContainer,
+    HeaderLogoMenuContainer,
+    HeaderTitleContainer
 };
