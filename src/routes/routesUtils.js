@@ -28,7 +28,7 @@ const getRouteByPathname = pathname => {
 };
 
 const buildDocumentTitle = title =>
-    title !== getRouteById(1).name ? `${initialDocumentTitle} | ${title}` : initialDocumentTitle;
+    title !== getRouteById(1).name ? `${title} | ${initialDocumentTitle}` : initialDocumentTitle;
 
 export {
     getRouteById,
