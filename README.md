@@ -45,7 +45,8 @@ This project is **Netlify-ready**:
 3. Connect your GitHub repository
 4. Set:
    - **Build command**: `npm run build`
-   - **Publish directory**: `public/`
+   - **Publish directory**: `build`
+   - **Functions directory**: `netlify/functions`
 
 [Read more →](https://docs.netlify.com/site-deploys/create-deploys/)
 
@@ -147,8 +148,8 @@ From `package.json`:
 - `npm run dev` – Runs both backend and frontend in watch mode using `concurrently`
 - `npm run start-react` – Runs the React app using Webpack Dev Server
 - `npm run start-server` – Starts the Express server using `nodemon`
-- `npm run debug` – Starts both servers with source maps for debugging
-- `npm run build` – Builds frontend and backend into `/public` and `/dist`
+- `npm run debug` – Runs both backend and frontend with source maps for debugging
+- `npm run build` – Builds frontend into `/build`
 - `npm run start` – Runs the compiled Express server
 - `npm run test` – Runs unit tests (customize as needed)
 
