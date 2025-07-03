@@ -15,24 +15,27 @@ A starter **Node.js + Express + React** application scaffold with styled-compone
 
 ---
 
-## 🧱 VSCode Task
+## 🧱 VSCode Tasks
 
-This boilerplate includes a task that scaffolds a new component directory with boilerplate files.
+Automated scaffolding tasks with smart import path resolution and auto-integration.
 
-**Task: `Create Component Directory`**
+### **React Component** | `Create React Component Directory`
+- `yourName.js` – Component with correct relative imports
+- `yourNameStyledComponents.js` – Styled components
+- `yourNameConsts.js` + `yourNameUtils.js` – Constants & utilities
+- `index.js` – Re-export for clean imports
 
-Creates the following structure:
+### **Express API** | `Create Express API Component Directory`
+- `server/api/yourName/` – Route handler + utils
+- Auto-registers route in `server/api/index.js`
+- Converts camelCase → kebab-case URLs
 
-- `/yourPath/yourName/`
-  - `yourName.js` – component from template
-  - `yourNameConsts.js`
-  - `yourNameUtils.js`
-  - `index.js` – re-exports component for simpler imports
+### **React Hook** | `Create React Hook Directory`
+- `src/hooks/useYourName/` – Hook + utils
+- Auto-exports in `src/hooks/index.js`
+- Updates API constants in `src/utils/consts.js`
 
-📂 Run via:
-
-- `Cmd + Shift + P` (Mac) or `Ctrl + Shift + P` (Windows/Linux)
-- Select `Tasks: Run Task` → `Create Component Directory`
+📂 **Run:** `Cmd/Ctrl + Shift + P` → `Tasks: Run Task`
 
 ---
 
