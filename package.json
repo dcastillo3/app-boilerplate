@@ -4,6 +4,7 @@
   "description": "App Boilerplate",
   "main": "index.js",
   "scripts": {
+    "setup": "node scripts/setup.js",
     "start": "node server/index.js",
     "start-react": "webpack-dev-server --config webpack.dev.js",
     "start-server": "nodemon server/index.js",
