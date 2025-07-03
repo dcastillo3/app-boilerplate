@@ -4,14 +4,23 @@ import { buildPalette, buildSpacing, buildSpan, buildTypography } from '../style
 
 export const Text = styled.p`
     ${(props) => buildTypography(props)}
+
+    /* Style overrides last */
+    ${buildSpacing}
 `;
 
 export const TextSmall = styled.p`
     ${(props) => buildTypography(props, typographyProps.body2)}
+
+    /* Style overrides last */
+    ${buildSpacing}
 `;
 
 export const TextCaption = styled.p`
     ${(props) => buildTypography(props, typographyProps.caption)}
+
+    /* Style overrides last */
+    ${buildSpacing}
 `;
 
 export const Span = styled.span`
@@ -21,4 +30,9 @@ export const Span = styled.span`
     ${buildPalette}
     ${buildSpacing}
     ${buildSpan}
+`;
+
+export const SemanticSpan = styled.span`
+    /* Style overrides last */
+    ${buildSpacing}
 `;

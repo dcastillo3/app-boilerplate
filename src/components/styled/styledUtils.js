@@ -27,7 +27,7 @@ const buildCardBorderRadius = ({ theme }) => {
     return cssProps;
 };
 
-const buildTypography = ({ theme, $truncate }, $element = propDefaults.element) => {
+const buildTypography = ({ theme, $truncate, $center }, $element = propDefaults.element) => {
     const typography = theme.typography[$element];
     const cssProps = { ...typography };
 
@@ -35,6 +35,10 @@ const buildTypography = ({ theme, $truncate }, $element = propDefaults.element) 
         cssProps.whiteSpace = 'noWrap'
         cssProps.overflow = 'hidden'
         cssProps.textOverflow = 'ellipsis'
+    };
+
+    if($center) {
+        cssProps.textAlign = 'center';
     };
 
     return cssProps;
