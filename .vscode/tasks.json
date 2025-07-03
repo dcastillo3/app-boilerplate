@@ -1,11 +1,32 @@
-// This file defines a task to create a basic directory structure
 {
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Create Component Directory",
+      "label": "Create React Component Directory",
       "type": "shell",
-      "command": "NAME=${input:name} && PASCAL=$(echo ${input:name} | awk -F- '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS='') && mkdir -p ${input:path}/$NAME && cp .templates/component.js ${input:path}/$NAME/$NAME.js && touch ${input:path}/$NAME/${NAME}Consts.js ${input:path}/$NAME/${NAME}Utils.js && echo \"export { default as $PASCAL } from './$NAME';\" > ${input:path}/$NAME/index.js && sed -i '' -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" ${input:path}/$NAME/$NAME.js",
+      "command": "NAME=${input:name} && \nPASCAL=$(echo ${input:name} | awk -F- '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS='') && \nDIR=${input:path}/$NAME && \nJSFILE=$DIR/$NAME.js && \nSCFILE=$DIR/${NAME}StyledComponents.js && \n# Calculate relative paths from component directory to src/components/styled\nCOMPONENT_PATH_DEPTH=$(echo \"${input:path}/$NAME\" | grep -o '/' | wc -l) && \n# For hooks import (to src/hooks)\nHOOKS_RELATIVE=$(printf '../%.0s' $(seq 1 $COMPONENT_PATH_DEPTH))hooks && \n# For styled import (to src/components/styled) - same for both main component and styled components file\nSTYLED_RELATIVE=$(printf '../%.0s' $(seq 1 $((COMPONENT_PATH_DEPTH - 1))))styled && \nmkdir -p \"$DIR\" && \ncp .templates/reactComponent/component.js \"$JSFILE\" && \ncp .templates/reactComponent/componentStyledComponents.js \"$SCFILE\" && \ntouch \"$DIR/${NAME}Consts.js\" \"$DIR/${NAME}Utils.js\" && \necho \"export { default as $PASCAL } from './$NAME';\" > \"$DIR/index.js\" && \nif [[ $(uname) == \"Darwin\" ]]; then \n  sed -i '' -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" -e \"s|../../../hooks|$HOOKS_RELATIVE|g\" -e \"s|../../styled|$STYLED_RELATIVE|g\" \"$JSFILE\" && \n  sed -i '' -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" -e \"s|../../styled|$STYLED_RELATIVE|g\" \"$SCFILE\"; \nelse \n  sed -i -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" -e \"s|../../../hooks|$HOOKS_RELATIVE|g\" -e \"s|../../styled|$STYLED_RELATIVE|g\" \"$JSFILE\" && \n  sed -i -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" -e \"s|../../styled|$STYLED_RELATIVE|g\" \"$SCFILE\"; \nfi",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Create Express API Component Directory",
+      "type": "shell",
+      "command": "NAME=${input:name} && \nKEBAB=$(echo \"$NAME\" | sed 's/\\([a-z0-9]\\)\\([A-Z]\\)/\\1-\\L\\2/g') && \nPASCAL=$(echo \"$NAME\" | awk -F- '{for (i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS='') && \nDIR=./server/api/$NAME && \nJSFILE=$DIR/$NAME.js && \nINDEX=./server/api/index.js && \nmkdir -p \"$DIR\" && \ncp .templates/expressApiComponent/component.js \"$JSFILE\" && \ntouch \"$DIR/${NAME}Consts.js\" \"$DIR/${NAME}Utils.js\" && \nROUTELINE=\"//$PASCAL route\\nrouter.use('/$KEBAB', require('./$NAME/$NAME'));\" && \nif [[ $(uname) == \"Darwin\" ]]; then \n  sed -i '' -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" \"$JSFILE\"; \nelse \n  sed -i -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" \"$JSFILE\"; \nfi && \nawk -v newline=\"$ROUTELINE\" 'BEGIN { inserted=0 } /router\\.use\\(\\(req, res, next\\)/ && !inserted { print newline \"\\n\"; inserted=1 } { print }' \"$INDEX\" > \"$INDEX.tmp\" && mv \"$INDEX.tmp\" \"$INDEX\"",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Create React Hook Directory",
+      "type": "shell",
+      "command": "NAME=${input:name} && \nPASCAL=$(echo \"$NAME\" | awk -F- '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS='') && \nDIR=./src/hooks/use$PASCAL && \nFILE=$DIR/use$PASCAL.js && \nCONST_FILE=./src/utils/consts.js && \nINDEX_FILE=./src/hooks/index.js && \nEXPORT_LINE=\"export { default as use$PASCAL } from './use$PASCAL/use$PASCAL';\" && \nmkdir -p \"$DIR\" && \ncp .templates/reactHook/useHook.js \"$FILE\" && \ntouch \"$DIR/use${PASCAL}Consts.js\" \"$DIR/use${PASCAL}Utils.js\" && \nif [[ $(uname) == \"Darwin\" ]]; then \n  sed -i '' -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" \"$FILE\"; \nelse \n  sed -i -e \"s/__NAME__/$NAME/g\" -e \"s/__NAME_PASCAL__/$PASCAL/g\" \"$FILE\"; \nfi && \nawk -v line=\"    $NAME: \\`\\${apiDirectory}/$NAME\\`,\" 'BEGIN{block=0} {if (/const apis = {/) block=1; if (block && /^\\s*}/) {print line; block=0} print}' \"$CONST_FILE\" > \"$CONST_FILE.tmp\" && mv \"$CONST_FILE.tmp\" \"$CONST_FILE\" && \nawk -v line=\"    $NAME: [],\" 'BEGIN{block=0} {if (/const initialStates = {/) block=1; if (block && /^\\s*}/) {print line; block=0} print}' \"$CONST_FILE\" > \"$CONST_FILE.tmp\" && mv \"$CONST_FILE.tmp\" \"$CONST_FILE\" && \necho \"\" >> \"$INDEX_FILE\" && \necho \"$EXPORT_LINE\" >> \"$INDEX_FILE\"",
       "problemMatcher": [],
       "presentation": {
         "echo": true,
