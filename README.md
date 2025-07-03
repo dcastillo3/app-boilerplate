@@ -15,6 +15,103 @@ A starter **Node.js + Express + React** application scaffold with styled-compone
 
 ---
 
+## 🚀 Getting Started with This Boilerplate
+
+> This is a boilerplate project. You should start a **new repository** based on it.
+
+### 1. Create a new repository from this template
+
+Using GitHub CLI:
+
+```bash
+gh repo create my-app --public --source=https://github.com/dcastillo3/app-boilerplate --remote=origin --push
+```
+
+Or:
+
+- Click the green **"Use this template"** button on the GitHub repo page
+- Create your new repo and clone it
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure your project
+
+```bash
+npm run setup
+```
+
+### 4. Start developing
+
+```bash
+npm run dev
+```
+
+---
+
+## 🛠️ Post-Setup Configuration
+
+The `npm run setup` script automatically configures:
+
+- In `package.json`: `name`, `description`, `repository.url`, `author`, `bugs.url`, `homepage`, `license`
+- In `src/routes/routesConsts.js`: `initialDocumentTitle` for correct tab display
+- Creates `.env` file with default development settings
+- Generates a new `README.md` tailored to your project
+- Removes setup script and cleans up after completion
+
+**Additional manual steps:**
+- Replace favicon in `/public/favicon.ico` with your own
+- Modify `.env` file if you need different port or environment settings
+
+---
+
+## 📦 Available Scripts
+
+From `package.json`:
+
+- `npm run setup` – Interactive project configuration (run once after cloning)
+- `npm run dev` – Runs both backend and frontend in watch mode using `concurrently`
+- `npm run start-react` – Runs the React app using Webpack Dev Server
+- `npm run start-server` – Starts the Express server using `nodemon`
+- `npm run debug` – Runs both backend and frontend with source maps for debugging
+- `npm run build` – Builds frontend into `/build`
+- `npm run start` – Runs the compiled Express server
+- `npm run test` – Runs unit tests (customize as needed)
+
+---
+
+## ⚙️ Environment Variables
+
+The `.env` file is automatically created during setup with default values:
+
+```
+EXPRESS_PORT=8000
+NODE_ENV=development
+```
+
+To modify environment variables, simply edit the `.env` file in your project root. Changes take effect after restarting the server.
+
+---
+
+## 📦 Netlify Deploy Commands
+
+This project is **Netlify-ready**:
+
+1. Push your repo to GitHub
+2. Go to [Netlify](https://www.netlify.com/)
+3. Connect your GitHub repository
+4. Set:
+   - **Build command**: `npm run build`
+   - **Publish directory**: `build`
+   - **Functions directory**: `netlify/functions`
+
+[Read more →](https://docs.netlify.com/site-deploys/create-deploys/)
+
+---
+
 ## 🧱 VSCode Tasks
 
 Automated scaffolding tasks with smart import path resolution and auto-integration.
@@ -36,22 +133,6 @@ Automated scaffolding tasks with smart import path resolution and auto-integrati
 - Updates API constants in `src/utils/consts.js`
 
 📂 **Run:** `Cmd/Ctrl + Shift + P` → `Tasks: Run Task`
-
----
-
-## 📦 Netlify Deploy Commands
-
-This project is **Netlify-ready**:
-
-1. Push your repo to GitHub
-2. Go to [Netlify](https://www.netlify.com/)
-3. Connect your GitHub repository
-4. Set:
-   - **Build command**: `npm run build`
-   - **Publish directory**: `build`
-   - **Functions directory**: `netlify/functions`
-
-[Read more →](https://docs.netlify.com/site-deploys/create-deploys/)
 
 ---
 
@@ -124,83 +205,12 @@ To update the browser tab title, modify `initialDocument.title` in `routeConsts.
 
 ---
 
-## ⚙️ Environment Variables
-
-Create a `.env` file at the root of your project:
-
-```
-EXPRESS_PORT=3001
-NODE_ENV=development
-```
-
----
-
 ## 🔄 Replacing Favicon
 
 Replace the default favicon:
 
 1. Drop your `.ico` file in `/public/` as `favicon.ico`
 2. The browser will use it automatically on next build/deploy
-
----
-
-## 📦 Available Scripts
-
-From `package.json`:
-
-- `npm run dev` – Runs both backend and frontend in watch mode using `concurrently`
-- `npm run start-react` – Runs the React app using Webpack Dev Server
-- `npm run start-server` – Starts the Express server using `nodemon`
-- `npm run debug` – Runs both backend and frontend with source maps for debugging
-- `npm run build` – Builds frontend into `/build`
-- `npm run start` – Runs the compiled Express server
-- `npm run test` – Runs unit tests (customize as needed)
-
----
-
-## 🚀 Getting Started with This Boilerplate
-
-> This is a boilerplate project. You should start a **new repository** based on it.
-
-### 1. Create a new repository from this template
-
-Using GitHub CLI:
-
-```bash
-gh repo create my-app --public --source=https://github.com/dcastillo3/app-boilerplate --remote=origin --push
-```
-
-Or:
-
-- Click the green **"Use this template"** button on the GitHub repo page
-- Create your new repo and clone it
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Create your `.env` file
-
-As shown in the **Environment Variables** section above.
-
----
-
-## 🛠️ Post-Setup Configuration
-
-After creating your own project, update:
-
-- In `package.json`:
-  - `name`
-  - `description`
-  - `repository.url`
-  - `author`
-  - `bugs.url`
-  - `homepage`
-
-- In `src/routes/routeConsts.js`:
-  - Update `initialDocument.title` for correct tab display
 
 ---
 
