@@ -32,16 +32,16 @@ Or:
 - Click the green **"Use this template"** button on the GitHub repo page
 - Create your new repo and clone it
 
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure your project
+### 2. Configure your project
 
 ```bash
 npm run setup
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
 ```
 
 ### 4. Start developing
@@ -58,6 +58,7 @@ The `npm run setup` script automatically configures:
 
 - In `package.json`: `name`, `description`, `repository.url`, `author`, `bugs.url`, `homepage`, `license`
 - In `src/routes/routesConsts.js`: `initialDocumentTitle` for correct tab display
+- In `src/components/header/header.js`: Updates "Name/Logo" to your project name
 - Creates `.env` file with default development settings
 - Generates a new `README.md` tailored to your project
 - Removes setup script and cleans up after completion

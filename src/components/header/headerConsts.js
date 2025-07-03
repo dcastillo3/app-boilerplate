@@ -1,0 +1,5 @@
+const homePath = '/';
+
+export {
+    homePath
+};

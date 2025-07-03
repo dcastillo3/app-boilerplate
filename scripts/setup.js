@@ -39,6 +39,9 @@ async function setupProject() {
         // Update routes constants
         await updateRoutesConsts(appTitle);
 
+        // Update header component
+        await updateHeaderComponent(projectName);
+
         // Create .env file
         await createEnvFile();
 
@@ -98,6 +101,20 @@ async function updateRoutesConsts(appTitle) {
 
     fs.writeFileSync(routesPath, content);
     console.log('✅ Updated routes constants');
+}
+
+async function updateHeaderComponent(projectName) {
+    const headerPath = path.join(__dirname, '../src/components/header/header.js');
+    let content = fs.readFileSync(headerPath, 'utf8');
+
+    // Update the Name/Logo placeholder
+    content = content.replace(
+        /<SubTitle>Name\/Logo<\/SubTitle>/,
+        `<SubTitle>${projectName}</SubTitle>`
+    );
+
+    fs.writeFileSync(headerPath, content);
+    console.log('✅ Updated header component');
 }
 
 async function createEnvFile() {

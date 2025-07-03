@@ -29,10 +29,9 @@ function Portfolio() {
 
     return (
         <PortfolioContainer $variant={cardProps.variant.background} $p={portfolioContainerPadding}>
-            <Modal showModal={showModal} variant={modalProps.variant.background} modalComponent={() => modalComponent} handleToggleModal={toggleModal} center>
-                
-                <Button $p={[2,2]}>Open Modal To See Data</Button>
-            </Modal>
+            <Modal showModal={showModal} variant={modalProps.variant.background} modalComponent={() => modalComponent} handleToggleModal={toggleModal} center />
+
+            <Button onClick={toggleModal} $p={[2,2]}>Open Modal To See Data</Button>
 
         </PortfolioContainer>
     );

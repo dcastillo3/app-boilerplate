@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, Box, FlexBox, FlexBoxColumn } from "../styled";
+import { Card, Box, FlexBox, FlexBoxColumn, SemanticButton } from "../styled";
 
 const HeaderContainer = styled(Box)`
 `;
@@ -21,9 +21,13 @@ const HeaderTitleContainer = styled(FlexBoxColumn)`
     text-align: center;
 `;
 
+const HeaderNameLogoButton = styled(SemanticButton)`
+`;
+
 export {
     HeaderContainer,
     HeaderFlexBoxContainer,
     HeaderLogoMenuContainer,
-    HeaderTitleContainer
+    HeaderTitleContainer,
+    HeaderNameLogoButton
 };
